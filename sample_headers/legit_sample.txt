@@ -1,0 +1,8 @@
+Return-Path: <no-reply@service.example.com>
+Received: from mx.service.example.com (203.0.113.10) by mx.google.com with ESMTP id yyyyy
+Authentication-Results: mx.google.com; spf=pass smtp.mailfrom=service.example.com; dkim=pass; dmarc=pass
+From: "Service" <no-reply@service.example.com>
+To: user@example.com
+Subject: Your monthly statement
+Date: Fri, 3 Oct 2025 09:00:00 +0000
+Message-ID: <67890@service.example.com>

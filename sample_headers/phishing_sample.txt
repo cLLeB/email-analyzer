@@ -1,0 +1,9 @@
+Return-Path: <spoof@paypa1.com>
+Received: from unknown (HELO mail.paypa1.com) (185.45.12.34)
+Received: from mail.paypa1.com (185.45.12.34) by mx.google.com with ESMTP id xxxxx
+Authentication-Results: mx.google.com; spf=fail (domain of paypa1.com does not designate 185.45.12.34 as permitted sender) smtp.mailfrom=paypa1.com; dkim=none; dmarc=fail
+From: "PayPal" <spoof@paypa1.com>
+To: victim@example.com
+Subject: Your PayPal account has been limited
+Date: Thu, 2 Oct 2025 10:22:33 +0000
+Message-ID: <12345@mail.paypa1.com>
