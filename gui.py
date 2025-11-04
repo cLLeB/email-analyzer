@@ -82,7 +82,10 @@ def _run_cmd_and_cleanup(cmd, out_widget=None, cleanup_path=None):
 
 def _download_and_extract_mmdb(url: str, dest_path: str, out_widget=None):
     """Download tar.gz from url and extract the first .mmdb member to dest_path."""
-    import urllib.request, tarfile, tempfile, shutil
+    import urllib.request
+    import tarfile
+    import tempfile
+    import shutil
     tmpfd, tmpname = tempfile.mkstemp()
     os.close(tmpfd)
     try:
@@ -150,11 +153,11 @@ class EmailAnalyzerGUI(tk.Tk):
         # Key storage options (radiobuttons)
         self.store_var = tk.StringVar(value='none')
         rb_none = tk.Radiobutton(top, text="Don't save", variable=self.store_var, value='none')
-        rb_none.pack(side=tk.LEFT, padx=(8,2))
+        rb_none.pack(side=tk.LEFT, padx=(8, 2))
         rb_keyring = tk.Radiobutton(top, text='Save to OS keyring', variable=self.store_var, value='keyring')
         rb_keyring.pack(side=tk.LEFT, padx=2)
         rb_file = tk.Radiobutton(top, text='Save to config file', variable=self.store_var, value='file')
-        rb_file.pack(side=tk.LEFT, padx=(2,4))
+        rb_file.pack(side=tk.LEFT, padx=(2, 4))
 
         btn_load = tk.Button(top, text='Load saved key', command=self.load_saved_key)
         btn_load.pack(side=tk.LEFT, padx=4)
@@ -164,7 +167,7 @@ class EmailAnalyzerGUI(tk.Tk):
         self.out.pack(fill=tk.BOTH, expand=True, padx=8, pady=8)
         # Paste area for headers (below output area)
         paste_frame = tk.Frame(self)
-        paste_frame.pack(fill=tk.BOTH, expand=False, padx=8, pady=(0,8))
+        paste_frame.pack(fill=tk.BOTH, expand=False, padx=8, pady=(0, 8))
         lbl_paste = tk.Label(paste_frame, text='Paste headers here:')
         lbl_paste.pack(anchor='w')
         self.paste_text = tk.Text(paste_frame, height=8, wrap='none')
@@ -173,7 +176,8 @@ class EmailAnalyzerGUI(tk.Tk):
         paste_btn_frame.pack(fill=tk.X)
         btn_paste_run = tk.Button(paste_btn_frame, text='Paste & Run', command=self.paste_and_run)
         btn_paste_run.pack(side=tk.LEFT, padx=4, pady=4)
-        btn_clear_paste = tk.Button(paste_btn_frame, text='Clear Paste', command=lambda: self.paste_text.delete('1.0', tk.END))
+        btn_clear_paste = tk.Button(paste_btn_frame, text='Clear Paste',
+                                    command=lambda: self.paste_text.delete('1.0', tk.END))
         btn_clear_paste.pack(side=tk.LEFT, padx=4, pady=4)
 
     def _run_in_thread(self, cmd):
@@ -193,7 +197,8 @@ class EmailAnalyzerGUI(tk.Tk):
     def setup_with_key(self):
         key = self.key_var.get().strip()
         if not key:
-            messagebox.showwarning('Missing key', 'Please paste your MaxMind license key in the field before clicking "Setup + GeoIP".')
+            messagebox.showwarning(
+                'Missing key', 'Please paste your MaxMind license key in the field before clicking "Setup + GeoIP".')
             return
         # In-process GeoIP download to avoid putting the key on the command line
         try:
@@ -238,7 +243,8 @@ class EmailAnalyzerGUI(tk.Tk):
         self._run_in_thread(cmd)
 
     def run_on_file(self):
-        path = filedialog.askopenfilename(title='Select email header file', filetypes=[('Text files', '*.txt'), ('All files', '*.*')])
+        path = filedialog.askopenfilename(title='Select email header file', filetypes=[
+                                          ('Text files', '*.txt'), ('All files', '*.*')])
         if not path:
             return
         cmd = [sys.executable, str(ROOT / 'tool.py'), 'run', path]

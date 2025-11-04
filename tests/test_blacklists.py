@@ -1,11 +1,8 @@
-import os
+from src import blacklists
 from pathlib import Path
-import tempfile
 
 import sys
 sys.path.insert(0, str(Path.cwd()))
-
-from src import blacklists
 
 
 def write_feed(file_path, lines):

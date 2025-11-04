@@ -1,10 +1,9 @@
+from src.analyzer import analyze_header
+from src.parser import parse_email_header
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path.cwd()))
-
-from src.parser import parse_email_header
-from src.analyzer import analyze_header
 
 
 def test_analyze_phishing_sample(monkeypatch):

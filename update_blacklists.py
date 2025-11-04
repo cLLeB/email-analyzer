@@ -12,10 +12,12 @@ from src.blacklists import set_blacklist_feeds_from_file
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--rebuild-cache', action='store_true', help='Rebuild the local cache after updating feeds')
-    parser.add_argument('--no-download', action='store_true', help='Skip downloading feeds; rebuild uses existing local files')
+    parser.add_argument('--no-download', action='store_true',
+                        help='Skip downloading feeds; rebuild uses existing local files')
     parser.add_argument('--feeds-file', help='Path to feeds mapping file (JSON or simple lines)', default=None)
     parser.add_argument('--stats', action='store_true', help='Print stats (count of CIDRs) per feed from the cache DB')
-    parser.add_argument('--feed', help='Name of a single feed to update (only this feed will be downloaded/updated)', default=None)
+    parser.add_argument(
+        '--feed', help='Name of a single feed to update (only this feed will be downloaded/updated)', default=None)
     parser.add_argument('--list-feeds', action='store_true', help='List feed names and resolved local paths/URLs')
     args = parser.parse_args()
 

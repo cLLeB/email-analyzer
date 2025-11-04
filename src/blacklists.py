@@ -7,10 +7,8 @@ from datetime import datetime, timedelta
 import requests
 import ipaddress
 from typing import List
-import pickle
 import sqlite3
 import time
-import json
 from urllib.parse import urlparse, unquote
 from urllib.request import url2pathname
 
@@ -187,6 +185,7 @@ def rebuild_cache():
             feed_mtimes[name] = 0
 
     _rebuild_cache(feed_files, feed_mtimes)
+
 
 # Public, no-auth feeds (text files)
 BLACKLIST_FEEDS = {
@@ -372,7 +371,8 @@ def _load_networks_from_file(file_path: str) -> List[ipaddress._BaseNetwork]:
                     else:
                         # single IP -> /32 or /128
                         # ip_network will infer correct version
-                        net = ipaddress.ip_network(token + '/32') if ':' not in token else ipaddress.ip_network(token + '/128')
+                        net = ipaddress.ip_network(
+                            token + '/32') if ':' not in token else ipaddress.ip_network(token + '/128')
                     nets.append(net)
                 except Exception:
                     # ignore unparseable lines
@@ -446,7 +446,8 @@ def ip_in_any_blacklist(ip: str) -> list:
             version = 6 if ip_obj.version == 6 else 4
             ip_packed = ip_obj.packed
             # SQLite supports blob comparisons
-            cur.execute('SELECT DISTINCT feed FROM networks WHERE version=? AND start<=? AND end>=?', (version, ip_packed, ip_packed))
+            cur.execute('SELECT DISTINCT feed FROM networks WHERE version=? AND start<=? AND end>=?',
+                        (version, ip_packed, ip_packed))
             rows = cur.fetchall()
             conn.close()
             for r in rows:

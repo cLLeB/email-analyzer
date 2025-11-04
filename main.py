@@ -1,4 +1,3 @@
-import sys
 import argparse
 from rich import print
 from src.parser import parse_email_header
@@ -38,7 +37,8 @@ if __name__ == '__main__':
     parser.add_argument('--no-update', help='Skip updating blacklist feeds at startup', action='store_true')
     parser.add_argument('--feeds-dir', help='Path to feeds directory to override data/', default=None)
     parser.add_argument('--no-cache', help='Disable on-disk parsed-network cache', action='store_true')
-    parser.add_argument('--feeds-file', help='Path to JSON or simple feeds file to override built-in feeds', default=None)
+    parser.add_argument(
+        '--feeds-file', help='Path to JSON or simple feeds file to override built-in feeds', default=None)
     args = parser.parse_args()
 
     header_file = args.header_file

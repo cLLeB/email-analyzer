@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def run(cmd, check=True):
-    print('>',' '.join(cmd))
+    print('>', ' '.join(cmd))
     return subprocess.run(cmd, check=check)
 
 
@@ -43,8 +43,10 @@ def cmd_setup(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('--download-feeds', action='store_true', help='Download blacklist feeds and rebuild cache')
     parser.add_argument('--geoip-url', help='Direct URL to GeoLite2 mmdb or tar.gz to download')
-    parser.add_argument('--geoip-dest', default=str(ROOT / 'data' / 'GeoLite2-City.mmdb'), help='Destination path for GeoIP DB')
-    parser.add_argument('--maxmind-license', help='MaxMind license key to download GeoLite2-City (will download tar.gz and extract)')
+    parser.add_argument('--geoip-dest', default=str(ROOT / 'data' / 'GeoLite2-City.mmdb'),
+                        help='Destination path for GeoIP DB')
+    parser.add_argument('--maxmind-license',
+                        help='MaxMind license key to download GeoLite2-City (will download tar.gz and extract)')
     parsed = parser.parse_args(args)
 
     # Run bootstrap using venv python if available
