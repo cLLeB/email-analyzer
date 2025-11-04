@@ -38,7 +38,7 @@ jobs:
 
       - name: Fast bootstrap (CI smoke)
         run: |
-          python bootstrap.py --no-dev --no-update
+          python bootstrap.py --no-update
 
       - name: Run tests
         run: |
