@@ -13,22 +13,46 @@ Requirements
 Optional
 - GeoIP enrichment (GeoLite2-City): MaxMind requires a (free) account and a license key to download the official GeoLite2 files. You can also provide a direct download URL.
 
-One-command setup (recommended)
-Run a full setup that bootstraps the environment, downloads blacklist feeds, and fetches a GeoIP DB from MaxMind using your license key:
+
+Quick start for new users (what to expect)
+
+A new user who clones this repository will be able to run the CLI and GUI locally, but there are a few important notes so the first run is smooth:
+
+- The repository HEAD intentionally does NOT include the GeoIP database file (`data/GeoLite2-City.mmdb`) in the working tree. This file is large and is meant to be downloaded by each user (or CI) when needed.
+- Historically the GeoIP DB was present in earlier commits. That means a full Git clone (which fetches history) may still transfer the large blob unless you either shallow-clone or we rewrite history to remove the blob.
+
+If you want to avoid downloading any historical large blobs when cloning, use a shallow clone (recommended for quick starts):
 
 ```bash
-python tool.py setup --download-feeds --maxmind-license YOUR_MAXMIND_LICENSE_KEY
+git clone --depth 1 https://github.com/cLLeB/email-analyzer.git
+cd email-analyzer
 ```
 
-Or provide a direct GeoIP URL (mmdb or tar.gz containing an .mmdb):
+After cloning, follow these steps to set up and run the project locally.
+
+Create a virtual environment and bootstrap the project
 
 ```bash
+# create venv (Windows example in bash)
+python -m venv .venv
+source .venv/Scripts/activate
+
+# install requirements and perform the project's bootstrap actions
+python bootstrap.py
+```
+
+One-command setup (optional)
+Run a full setup that bootstraps the environment, downloads blacklist feeds, and fetches a GeoIP DB from MaxMind using your license key (or use a direct GeoIP URL):
+
+```bash
+# using a MaxMind license key (recommended via env var instead of passing on the CLI):
+export MAXMIND_LICENSE_KEY='YOUR_MAXMIND_LICENSE_KEY'
+python tool.py setup --download-feeds
+
+# or pass a direct geoip URL (mmdb or tar.gz containing an .mmdb):
 python tool.py setup --download-feeds --geoip-url 'https://example.com/GeoLite2-City.mmdb.tar.gz'
-```
 
-If you only want to bootstrap (create venv + install deps) without downloads:
-
-```bash
+# if you only want to create the venv + install deps without downloads:
 python tool.py setup
 ```
 
