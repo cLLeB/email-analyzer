@@ -41,8 +41,9 @@ def main():
         run([venv_python, '-m', 'pip', 'install', 'keyring'])
     except Exception:
         print('Warning: failed to install keyring in venv; GUI keyring support may be unavailable.')
-    # Install dev requirements if requested and the file exists. If the file was removed
-    # (we consolidated dev deps into requirements.txt), skip gracefully.
+    # Install dev requirements if requested and the file exists. If there is no
+    # requirements-dev.txt (we consolidated dev deps into requirements.txt), skip
+    # gracefully. CI sets --no-dev by default.
     dev_reqs = ROOT / 'requirements-dev.txt'
     if not args.no_dev:
         if dev_reqs.exists():
