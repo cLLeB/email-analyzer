@@ -36,6 +36,11 @@ def main():
 
     run([venv_python, '-m', 'pip', 'install', '--upgrade', 'pip'])
     run([venv_python, '-m', 'pip', 'install', '-r', str(ROOT / 'requirements.txt')])
+    # Ensure optional convenience packages like keyring are present (best-effort)
+    try:
+        run([venv_python, '-m', 'pip', 'install', 'keyring'])
+    except Exception:
+        print('Warning: failed to install keyring in venv; GUI keyring support may be unavailable.')
     # Install dev requirements if requested and the file exists. If the file was removed
     # (we consolidated dev deps into requirements.txt), skip gracefully.
     dev_reqs = ROOT / 'requirements-dev.txt'

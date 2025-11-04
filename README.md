@@ -123,3 +123,19 @@ Post-setup confirmation
 	 ```
  - The setup output will also include an explicit saved message and the bootstrap step prints the analyzer sample run summary.
 
+GUI (minimal)
+
+If you prefer a minimal graphical interface, there's a tiny Tkinter GUI bundled as `gui.py` and accessible via the CLI:
+
+	- Launch from the command line:
+
+```bash
+python tool.py gui
+```
+
+	- The GUI provides buttons for: Setup (optionally download feeds), Update feeds, Rebuild cache, Run analysis on a selected header file, and display key data paths. Output and progress are shown in a text area.
+
+Notes:
+ - The GUI uses your system Python and does not add any heavy UI dependencies (Tkinter is part of the Python standard library on most installations).
+ - The GUI is intentionally minimal — it shells out to the same scripts used by the CLI so behavior is consistent.
+

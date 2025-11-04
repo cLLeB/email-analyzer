@@ -193,7 +193,9 @@ BLACKLIST_FEEDS = {
     'spamhaus_drop': 'https://www.spamhaus.org/drop/drop.txt',
     'spamhaus_edrop': 'https://www.spamhaus.org/drop/edrop.txt',
     'firehol_level1': 'https://iplists.firehol.org/files/firehol_level1.netset',
-    'blocklist_de_all': 'https://lists.blocklist.de/lists/all.txt'
+    'blocklist_de_all': 'https://lists.blocklist.de/lists/all.txt',
+    # Local test feed (contains 203.0.113.5 for verification)
+    'local_test': os.path.join(DATA_DIR, 'mytest.txt')
 }
 
 DEFAULT_REFRESH_MINUTES = 60  # feeds older than this will be refreshed by updater

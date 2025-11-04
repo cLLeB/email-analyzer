@@ -5,3 +5,4 @@ python-dateutil==2.8.2
 pytest==7.4.0
 flake8==6.1.0
 geoip2==4.8.0
+keyring==25.6.0
