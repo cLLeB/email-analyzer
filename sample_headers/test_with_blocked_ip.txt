@@ -1,0 +1,7 @@
+From: attacker <bad@example.com>
+To: victim <you@example.com>
+Subject: Test with blocked IP
+Date: Fri, 04 Nov 2025 12:00:00 +0000
+
+Received: from unknown (HELO example) (203.0.113.5)
+    by mx.example.net with SMTP; Fri, 04 Nov 2025 12:00:00 +0000

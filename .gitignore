@@ -39,6 +39,10 @@ ENV/
 data/*.pkl
 data/*.cache
 
+# Runtime artifacts (don't commit)
+data/GeoLite2-*.mmdb
+data/networks.db
+
 # OS files
 .DS_Store
 Thumbs.db
